@@ -47,62 +47,62 @@ class BlogComments(db.Model):
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
 
 
-# class  Upvotes(db.Model):
+class  Upvotes(db.Model):
 
-#     __tablename__="upvotes"
+    __tablename__="upvotes"
 
-#     id=db.Column(db.Integer,primary_key=True)
-#     upvote=db.Column(db.Integer,default=1)
-#     pitch_id=db.Column(db.Integer,db.ForeignKey("pitches.id")) 
-#     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))  
+    id=db.Column(db.Integer,primary_key=True)
+    upvote=db.Column(db.Integer,default=1)
+    blog_id=db.Column(db.Integer,db.ForeignKey("blogs.id")) 
+    user_id=db.Column(db.Integer,db.ForeignKey("users.id"))  
 
-#     def save_upvotes(self):
-#         db.session.add(self)
-#         db.session.commit()
+    def save_upvotes(self):
+        db.session.add(self)
+        db.session.commit()
 
-#     def add_upvote(cls,id):
-#         upvote_pitch=Upvotes(user_id=current_user, pitch_id=id)
-#         upvote_pitch.save_upvotes() 
+    def add_upvote(cls,id):
+        upvote_blog=Upvotes(user_id=current_user, pitch_id=id)
+        upvote_blog.save_upvotes() 
     
-#     @classmethod
-#     def get_upvotes(cls,id):
-#         upvote=Upvotes.query.filter_by(pitch_id=id).all()
+    @classmethod
+    def get_upvotes(cls,id):
+        upvote=Upvotes.query.filter_by(blog_id=id).all()
 
-#     @classmethod
-#     def get_all_upvotes(cls,pitch_id):
-#         upvotes=Upvotes.query.order_by("id").all() 
-#         return upvotes
+    @classmethod
+    def get_all_upvotes(cls,blog_id):
+        upvotes=Upvotes.query.order_by("id").all() 
+        return upvotes
 
-#     def __repr__(self):
-#         return f'{self.user_id}:{self.pitch_id}'
+    def __repr__(self):
+        return f'{self.user_id}:{self.blog_id}'
 
-# class Downvotes(db.Model):
-#     __tablename__ ="downvotes"
+class Downvotes(db.Model):
+    __tablename__ ="downvotes"
 
-#     id=db.Column(db.Integer,primary_key=True)
-#     downvotes=db.Column(db.Integer,default=1)
-#     user_id=db.Column(db.Integer,db.ForeignKey("users.id")) 
-#     pitch_id=db.Column(db.Integer,db.ForeignKey("pitches.id"))
+    id=db.Column(db.Integer,primary_key=True)
+    downvotes=db.Column(db.Integer,default=1)
+    user_id=db.Column(db.Integer,db.ForeignKey("users.id")) 
+    blog_id=db.Column(db.Integer,db.ForeignKey("pitches.id"))
 
-#     def save_downvotes(self):
-#         db.session.add(self)
-#         db.session.commit()
+    def save_downvotes(self):
+        db.session.add(self)
+        db.session.commit()
 
-#     def add_downvote(cls,id):
-#         downvotes=Downvotes(user=current_user, pitch_id=id)
-#         downvotes.save_downvotes() 
+    def add_downvote(cls,id):
+        downvotes=Downvotes(user=current_user, blog_id=id)
+        downvotes.save_downvotes() 
     
-#     @classmethod
-#     def get_downvotes(cls,id):
-#         downvotes=Downvotes.query.filter_by(pitch_id=id).all()
+    @classmethod
+    def get_downvotes(cls,id):
+        downvotes=Downvotes.query.filter_by(blog_id=id).all()
 
-#     @classmethod
-#     def get_all_downvotes(cls,pitch_id):
-#         downvotes=Downvotes.query.order_by("id").all() 
-#         return downvotes
+    @classmethod
+    def get_all_downvotes(cls,pitch_id):
+        downvotes=Downvotes.query.order_by("id").all() 
+        return downvotes
 
-#     def __repr__(self):
-#         return f'{self.user_id}:{self.pitch_id}'
+    def __repr__(self):
+        return f'{self.user_id}:{self.pitch_id}'
     
   
 
