@@ -19,13 +19,13 @@ class Config:
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 
-# class ProdConfig(Config):
-#     '''
-#     Method that provides general setting for production
+class ProdConfig(Config):
+    '''
+    Method that provides general setting for production
 
-#     Args: 
-#          Permits child class to inherit from class Config
-#     '''
+    Args: 
+         Permits child class to inherit from class Config
+    '''
 
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     # if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
