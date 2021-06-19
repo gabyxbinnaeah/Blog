@@ -20,6 +20,7 @@ photos = UploadSet('photos',IMAGES)
 def create_app(config_name):
     app=Flask(__name__)
 
+    simple.init_app(app) 
     
 
 from app import views 
