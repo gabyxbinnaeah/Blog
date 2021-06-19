@@ -21,7 +21,7 @@ class Config:
 
 class ProdConfig(Config):
     '''
-    Method that provides general setting for production
+    Method that provides configuration  setting for production
 
     Args: 
          Permits child class to inherit from class Config
@@ -31,28 +31,28 @@ class ProdConfig(Config):
     # if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
     #     SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
-# class TestConfig(Config):
-#     '''
-#     Testing configuration child class
-#     Args:
-#         Config: The parent configuration class with General configuration settings 
-#     '''
-#     pass
-# class DevConfig(Config):
-#     '''
-#     Method that sets configuarations for development class
-#     Args: 
-#          enable child class to inherit from parent class 
-#     '''
+class TestConfig(Config):
+    '''
+    Testing configuration child class
+    Args:
+        Config: The parent configuration class with General configuration settings 
+    '''
+    pass
+class DevConfig(Config):
+    '''
+    Method that sets configuarations for development class
+    Args: 
+         enable child class to inherit from parent class 
+    '''
     
-#     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:silfanus12@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:silfanus12@localhost/pitch'
 
-#     DEBUG=True
+    DEBUG=True
 
 
 
-# config_options = {
-#     'development': DevConfig,
-#     'production': ProdConfig,
-#     'test': TestConfig
-# }
+config_options = {
+    'development': DevConfig,
+    'production': ProdConfig,
+    'test': TestConfig
+}
