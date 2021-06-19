@@ -13,7 +13,7 @@ class Blog(db.Model):
     '''
     properties of pitch class
     '''
-    __tablename__='pitches' 
+    __tablename__='blogs' 
 
     id=db.Column(db.Integer, primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
@@ -28,23 +28,23 @@ class Blog(db.Model):
 
     @classmethod
     def get_blogs(cls,id):
-        pitches=Pitch.query.order_by(pitch_id=id).desc().all()
-        return pitches
+        blogs=Blog.query.order_by(blog_id=id).desc().all()
+        return blogs
 
     def  __repr__(self):
-        return f'Pitch {self.description}'
+        return f'Blog {self.description}'
 
-# class BlogComments(db.Model):
-#     '''
-#     model that defines the properties of comments
-#     '''
-#     __tablename__='comments'
+class BlogComments(db.Model):
+    '''
+    model that defines the properties of comments
+    '''
+    __tablename__='comments'
 
-#     id=db.Column(db.Integer,primary_key=True)
-#     description=db.Column(db.String())  
-#     date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
-#     blog_id=db.Column(db.Integer,db.ForeignKey("pitches.id"))
-#     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
+    id=db.Column(db.Integer,primary_key=True)
+    description=db.Column(db.String())  
+    date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
+    blog_id=db.Column(db.Integer,db.ForeignKey("pitches.id"))
+    user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
 
 
 # class  Upvotes(db.Model):
