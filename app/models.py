@@ -11,7 +11,7 @@ def load_user(user_id):
 
 class Blog(db.Model):
     '''
-    properties of pitch class
+    properties of blog class
     '''
     __tablename__='blogs' 
 
@@ -21,7 +21,7 @@ class Blog(db.Model):
     category=db.Column(db.String(255), nullable=False)
     description=db.Column(db.String(255), index=True)
     email = db.Column(db.String(255),unique = True,index = True)
-    blogscomment=db.relationship('PitchComments',backref ='pitchescomment',lazy= "dynamic")
+    blogscomment=db.relationship('BlogComments',backref ='blogscomment',lazy= "dynamic")
     date_posted=db.Column(db.DateTime,default=datetime.utcnow)
     upvotes=db.relationship('Upvotes', backref ='downvote',lazy= "dynamic")
     downvotes=db.relationship('Downvotes',backref='upvote',lazy= "dynamic")  
@@ -43,7 +43,7 @@ class BlogComments(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     description=db.Column(db.String())  
     date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
-    blog_id=db.Column(db.Integer,db.ForeignKey("pitches.id"))
+    blog_id=db.Column(db.Integer,db.ForeignKey("blogs.id"))
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
 
 
@@ -82,7 +82,7 @@ class Downvotes(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     downvotes=db.Column(db.Integer,default=1)
     user_id=db.Column(db.Integer,db.ForeignKey("users.id")) 
-    blog_id=db.Column(db.Integer,db.ForeignKey("pitches.id"))
+    blog_id=db.Column(db.Integer,db.ForeignKey("blogs.id"))
 
     def save_downvotes(self):
         db.session.add(self)
