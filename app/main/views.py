@@ -66,4 +66,41 @@ def new_comment(blog_id):
     return render_template('comments.html', form = form, comment = all_comments, blog = blog)
 
 
+@main.route('/blog/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
+@login_required
+def upvote(blog_id):
+    blog = Blog.query.get(pitch_id)
+    user = current_user
+    blog_upvotes = Upvote.query.filter_by(blog_id= blog_id)
+    
+    if Upvote.query.filter(Upvote.user_id==user.id,Upvote.blog_id==blog_id).first():
+        return  redirect(url_for('main.index'))
+
+
+    new_upvote = Upvote(blog_id=blog_id, user = current_user)
+    new_upvote.save_upvotes()
+    return redirect(url_for('main.index'))
+
+
+
+#    new_upvote = Upvote(user=current_user, pitch=pitch, vote_number=1)
+#    new_vote.save_vote()
+# return redirect(url_for('main.index'))
+
+
+# @main.route('/pitch/downvote/<int:pitch_id>/downvote', methods = ['GET', 'POST'])
+# @login_required
+# def downvote(pitch_id):
+#     pitch = Pitch.query.get(pitch_id)
+#     user = current_user
+#     pitch_downvotes = Downvote.query.filter_by(pitch_id= pitch_id)
+    
+#     if Downvote.query.filter(Downvote.user_id==user.id,Downvote.pitch_id==pitch_id).first():
+#         return  redirect(url_for('main.index'))
+
+
+#     new_downvote = Downvote(pitch_id=pitch_id, user = current_user)
+#     new_downvote.save_downvotes()
+#     return redirect(url_for('main.index'))
+
 
