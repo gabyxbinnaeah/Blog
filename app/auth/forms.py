@@ -24,4 +24,11 @@ class RegistrationForm(FlaskForm):
         if User.query.filter_by(username= data_field.data).first():
             raise ValidationError('There is an account with that username')
 
-        
+class LoginForm(FlaskForm):
+    email = StringField('Your email address',validators=[Required(),Email()]) 
+    password = PasswordField('Your password',validators=[Required(),Password()]) 
+    remember= BooleanField('Remember me')
+    submit= SubmitField('Sign In')
+
+    
+
