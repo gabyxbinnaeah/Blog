@@ -45,7 +45,7 @@ class DevConfig(Config):
          enable child class to inherit from parent class 
     '''
     
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:silfanus12@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:silfanus12@localhost/blog' 
 
     DEBUG=True
 
