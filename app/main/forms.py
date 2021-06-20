@@ -6,7 +6,7 @@ from wtforms import ValidationError
 class BlogForm(FlaskForm):
     title = StringField('Blog title', validators=[Required()])
     description=TextAreaField("What would you like to write on?",validators=[Required()])
-    category=RadioField('Label',choices=[('technologyblog','technologyblog'),('sportsblog','sportsblog'),('academicblog','academicblog'),('researchblog','researchblog')],validators=[Required()])
+    category=RadioField('Label',choices=[('technologyblog','technologyblog'),('sportsblog','sportsblog'),('academicblog','academicblog'),('researchblog','researchblog'),('politicalblog','politicalblog')],validators=[Required()])
     submit=SubmitField('Submit') 
 
 
@@ -23,4 +23,3 @@ class DownvotesForm(FlaskForm):
 class UpdatedProfileForm(FlaskForm):
     bio = TextAreaField('Tell us about you', validators=[Required()])
     submit=SubmitField('submit')
-    
