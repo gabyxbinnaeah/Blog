@@ -1,0 +1,48 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'macros.html' as macro %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{%endblock%}
+{%block content%}
+  <div class="container">
+    <br>
+    <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link btn btn-info" data-toggle="tab" href="#technologyblog">Technology</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-info" data-toggle="tab" href="#sportsblog">Sports</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-info" data-toggle="tab" href="#academicblog">Academic</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-info" data-toggle="tab" href="#researchblog">Research</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-info" data-toggle="tab" href="#politicalblog">Politics</button>
+      </li>
+      
+    </ul>
+
+    <div class="tab-content">   
+      <div id="technologyblog" class="container tab-pane active"><br>
+        {{ macro.display(technologyblog)}}
+        
+      </div>
+      <div id="sportsblog" class="container tab-pane fade"><br>
+        {{ macro.display(sportsblog)}}
+      </div>
+      <div id="academicblog" class="container tab-pane fade"><br>
+        {{ macro.display(academicblog)}}
+      </div>
+      <div id="researchblog" class="container tab-pane fade"><br>
+        {{ macro.display(researchblog)}}
+      </div>
+      <div id="politicalblog" class="container tab-pane fade"><br>
+        {{ macro.display(politicalblog)}}
+      </div>
+      
+    </div>
+  </div>
+{%endblock%}
