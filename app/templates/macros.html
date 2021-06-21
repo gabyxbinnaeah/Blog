@@ -38,6 +38,7 @@
 				<div class="row text-center">
 						<a><p style="color: brown">{{ comment.description }}</p></a>
 						<!-- <small> posted by {{comment.user_id.username}}</small> -->
+						<a href="{{url_for('main.deleteComment',id=comment.id)}}">DELETE COMMENT</a>
 				</div>
 			{% endfor %}
 			{% else %}

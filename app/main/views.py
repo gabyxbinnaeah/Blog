@@ -67,7 +67,15 @@ def new_comment(blog_id):
     all_comments=BlogComments.query.filter_by(blog_id=blog_id).all()
     return render_template('comments.html', form = form, comment = all_comments, blog = blog)
 
-
+# delete comment
+@main.route('/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def deleteComment(id):
+    comment =BlogComments.query.get_or_404(id)
+    db.session.delete(comment)
+    db.session.commit()
+    flash('comment succesfully deleted')
+    return redirect (url_for('main.index'))
 
 
 
