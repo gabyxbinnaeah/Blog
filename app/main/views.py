@@ -5,6 +5,7 @@ from ..models import Blog, User,BlogComments,Upvotes,Downvotes
 from .forms import BlogForm,BlogCommentsForm,UpvotesForm,DownvotesForm,UpdateProfile
 from flask.views import View,MethodView
 from .. import db,photos
+from ..request import getQuotes
 import markdown2 
 #views
 
@@ -14,6 +15,7 @@ def index():
     View root page function that returns the index page and its data.
     ''' 
     blog=Blog.query.filter_by().first()
+    quotes=getQuotes()
 
     title='Home'
 
@@ -26,7 +28,7 @@ def index():
     upvotes=Upvotes.get_all_upvotes(id)
 
 
-    return render_template('home.html',title=title,blog=blog,technologyblog=technologyblog,sportsblog=sportsblog,academicblog=academicblog,researchblog=researchblog,politicablog=politicablog) 
+    return render_template('home.html',title=title,blog=blog,technologyblog=technologyblog,sportsblog=sportsblog,academicblog=academicblog,researchblog=researchblog,politicablog=politicablog,quotes=quotes) 
 
 
 

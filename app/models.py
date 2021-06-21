@@ -9,6 +9,16 @@ from datetime import datetime
 def load_user(user_id):
     return User.query.get(int(user_id)) 
 
+
+class Quote:
+    '''
+    quote class that define quote objects
+    '''
+    def __init__(self,id,author,quote):
+        self.id = id
+        self.author = author
+        self.quote = quote
+
 class Blog(db.Model):
     '''
     properties of blog class
