@@ -23,8 +23,8 @@ class Blog(db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
     blogscomment=db.relationship('BlogComments',backref ='blogscomment',lazy= "dynamic")
     date_posted=db.Column(db.DateTime,default=datetime.utcnow)
-    upvotes=db.relationship('Upvotes', backref ='downvote',lazy= "dynamic")
-    downvotes=db.relationship('Downvotes',backref='upvote',lazy= "dynamic")  
+    upvotes=db.relationship('Upvotes', backref ='like',lazy= "dynamic")
+    downvotes=db.relationship('Downvotes',backref='dislike',lazy= "dynamic")  
 
     @classmethod
     def get_blogs(cls,id):
@@ -102,7 +102,7 @@ class Downvotes(db.Model):
         return downvotes
 
     def __repr__(self):
-        return f'{self.user_id}:{self.pitch_id}'
+        return f'{self.user_id}:{self.blog_id}'
     
   
 

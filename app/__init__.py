@@ -21,6 +21,7 @@ mail = Mail()
 
 photos = UploadSet('photos',IMAGES)
 def create_app(config_name):
+
     app=Flask(__name__)
     
     simple.init_app(app)
@@ -42,9 +43,9 @@ def create_app(config_name):
         #register blueprint
     app.register_blueprint(main_blueprint) 
 
-        # Registering the auth bluprint
+        # Registering the auth blueprint
     from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    app.register_blueprint(auth_blueprint,url_prefix = '/auth')
 
     return app    
 

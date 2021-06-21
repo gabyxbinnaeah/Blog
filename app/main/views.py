@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort, flash
 from . import main
 from flask_login import login_required, current_user
 from ..models import Blog, User,BlogComments,Upvotes,Downvotes
-from .forms import BlogForm,BlogCommentsForm,UpvotesForm,DownvotesForm,UpdateProfileForm
+from .forms import BlogForm,BlogCommentsForm,UpvotesForm,DownvotesForm,UpdateProfile
 from flask.views import View,MethodView
 from .. import db,photos
 import markdown2 
@@ -19,14 +19,14 @@ def index():
 
     technologyblog=Blog.query.filter_by(category="technologyblog")
     sportsblog=Blog.query.filter_by(category="sportsblog")
-    academicblog=Blog.query.filter_by(category="academic")
-    researchblog=Blog.query.filter_by(category="research")
-    politicblog=Blog.query.filter_by(category="politicalblog")
+    academicblog=Blog.query.filter_by(category="academicblog")
+    researchblog=Blog.query.filter_by(category="researchblog")
+    politicablog=Blog.query.filter_by(category="politicablog")
 
     upvotes=Upvotes.get_all_upvotes(id)
 
 
-    return render_template('home.htnl',title=title,blog=blog,technologyblog=technologyblog,sportsblog=sportsblog,academic=academic,researchblog=researchblog,politicblog=politicalblog) 
+    return render_template('home.html',title=title,blog=blog,technologyblog=technologyblog,sportsblog=sportsblog,academicblog=academicblog,researchblog=researchblog,politicablog=politicablog) 
 
 
 
@@ -34,8 +34,8 @@ def index():
 @login_required
 def new_blog():
     form= BlogForm() 
-    my_upvotes.query.filter_by(blog_id=Blog.id)
-    if form.validate_on_submi():
+    my_upvotes=my_upvotes=Upvotes.query.filter_by(blog_id=Blog.id)
+    if form.validate_on_submit():
         description=form.description.data
         title=form.title.data
         user_id=current_user
@@ -64,6 +64,9 @@ def new_comment(blog_id):
 
     all_comments=BlogComments.query.filter_by(blog_id=blog_id).all()
     return render_template('comments.html', form = form, comment = all_comments, blog = blog)
+
+
+
 
 
 @main.route('/blog/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
@@ -120,7 +123,7 @@ def update_profile(uname):
     if user is None:
         abort(404)
 
-    form = UpdateProfileForm()
+    form = UpdateProfile()
 
     if form.validate_on_submit():
         user.bio = form.bio.data
@@ -144,3 +147,8 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+
+
+
+

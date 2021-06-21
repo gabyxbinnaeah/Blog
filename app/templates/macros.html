@@ -14,8 +14,8 @@
 					</blockquote>
 					
 					<a href="{{url_for('main.new_comment',blog_id = category.id)}}" class="btn btn-info"> Add a comment</a>
-					<a href="{{url_for('main.upvote',blog_id = category.id)}}" class= "btn btn-primary btn-sm"><i></i>Upvote <span>{{category.upvotes.count()}}</span></a>
-					<a href="{{url_for('main.downvote',blog_id = category.id)}}" class= "btn btn-primary btn-sm"><i class="far fa-thumbs-up"></i>Downvote <span>{{category.downvotes.count()}}</span></a>
+					<a href="{{url_for('main.upvote',pitch_id = category.id)}}" class= "btn btn-primary btn-sm"><i></i>Upvote <span>{{category.upvotes.count()}}</span></a>
+					<a href="{{url_for('main.downvote',pitch_id = category.id)}}" class= "btn btn-primary btn-sm"><i class="far fa-thumbs-up"></i>Downvote <span>{{category.downvotes.count()}}</span></a>
 
 
 				</div>
