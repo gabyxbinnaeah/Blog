@@ -13,11 +13,12 @@
 						<!-- <footer class="blockquote-footer"> Posted by {{category.user_id.username}}</footer> -->
 					</blockquote>
 					
-					<a href="{{url_for('main.new_comment',blog_id = category.id)}}" class="btn btn-info"> Add a comment</a>
-					<a href="{{url_for('main.upvote',pitch_id = category.id)}}" class= "btn btn-primary btn-sm"><i></i>Upvote <span>{{category.upvotes.count()}}</span></a>
-					<a href="{{url_for('main.downvote',pitch_id = category.id)}}" class= "btn btn-primary btn-sm"><i class="far fa-thumbs-up"></i>Downvote <span>{{category.downvotes.count()}}</span></a>
+					<a href="{{url_for('main.new_comment',blog_id = category.id)}}" class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus"></span>Add Comment</a>
+					<a href="{{url_for('main.updateBlog',id = category.id)}}" class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus"></span>UpdateBlog</a>
+					<a href="{{url_for('main.deleteBlog',id=category.id)}}" class="btn btn-info btn-md"><span class="glyphicon glyphicon-trash"></span> Trash</a>
 
-
+					
+					
 				</div>
 		    </div>
 

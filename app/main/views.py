@@ -62,6 +62,24 @@ def deleteBlog(id):
     return redirect (url_for('main.index'))
 
 
+#Update blog
+@main.route('/update/<int:id>', methods=['GET', 'POST'])
+@login_required
+def updateBlog(id):
+    blog = Blog.query.get_or_404(id)
+    form = BlogForm()
+    if form.validate_on_submit():
+        blog.title = form.title.data
+        blog.description= form.description.data
+        db.session.add(blog)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    elif request.method == 'GET':
+        form.title.data = blog.title
+        form.description.data = blog.description
+    return render_template('updateBlog.html', form=form)
+
+
 @main.route('/comment/new/<int:blog_id>', methods=['GET','POST'])
 def new_comment(blog_id):
     form = BlogCommentsForm()
@@ -69,7 +87,7 @@ def new_comment(blog_id):
     if form.validate_on_submit():
         description=form.description.data
 
-        new_comment=BlogComments(description=description,user_id=current_user._get_current_object().id,blog_id=blog_id)
+        new_comment=BlogComments(description=description,blog_id=blog_id) #user_id=current_user._get_current_object().id,
         db.session.add(new_comment)
         db.session.commit()
 
