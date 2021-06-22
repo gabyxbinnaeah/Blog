@@ -3,10 +3,8 @@ from app.models import Blog,BlogComments,User,Upvotes,Downvotes
 from  flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager,Server
 
-# Creating app instance
-app = create_app('development')
-# app=create_app('development')
-# app=create_app('test')
+
+app = create_app('production')
 
  # create migrate instance
 migrate = Migrate(app, db)
