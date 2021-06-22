@@ -4,7 +4,7 @@ ___
 
 # Author 
 
-### Gabriel Odhiambo
+### Gabriel Silfanus Odhiambo
 ___ 
 
 # Description 
