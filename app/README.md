@@ -39,13 +39,13 @@ ___
 ___
 
 # Installation
-### first clone the repository
+### first clone the repository by running this command in your terminal.
       git clone: https://github.com/gabyxbinnaeah/Blog.git
 
 ### Then, install all neccesary to run 
       pipenv install
    
-### After, run the application 
+### After, run this command in your terminal
 
     ./start.sh
 
