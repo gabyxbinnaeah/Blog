@@ -57,7 +57,7 @@ ___
 
 # Live link
 
-### click on this link to access application: https://pitchip3.herokuapp.com/
+### click on this link to access application:https://gabyblogapplication.herokuapp.com/
 
 ___
 
